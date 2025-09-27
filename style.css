@@ -1,0 +1,156 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+}
+:root {
+    --bg-light: #f0f5f5;
+    --cards-light: #ffffff;
+    --color-light: #000;
+    --bg-dark: #131a2ae2;
+    --cards-dark: #0c101c;
+    --color-dark: #fff;
+}
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg-light);
+    color: var(--color-light);
+}
+h1 {
+    margin: 0 !important;
+}
+p {
+    margin: 0 !important;
+}
+main {
+    margin-top: 2rem;
+}
+.custom-container {
+    max-width: 95%;
+    margin: auto;
+}
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--color-dark);
+}
+body.dark-mode .bg-custom,
+body.dark-mode .weather__card--main,
+body.dark-mode .day-properties,
+body.dark-mode .weather__hourly-card,
+body.dark-mode .dropdown-menu {
+    background-color: var(--cards-dark);
+}
+body.dark-mode .header__search-form input {
+    border-color: #555;
+    color: var(--color-dark) !important;
+}
+body.dark-mode button {
+    color: var(--color-dark);
+}
+body,
+.weather__card--main,
+.day-properties,
+.weather__hourly-card,
+.bg-custom,
+.header__search-form input,
+button {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.dark-mode .dropdown-toggle:hover {
+    color: #ccc;
+}
+
+.bg-custom {
+    background-color: var(--cards-light);
+    border-radius: 0.625rem;
+}
+.header__wrapper {
+    margin-block: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.625rem;
+}
+.header__search-form input {
+    background-color: transparent;
+    border: 1px #cccccc34 solid;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    outline: none;
+    transition: all 0.3s;
+}
+.header__search-form input::placeholder {
+    padding-left: 0.3rem;
+}
+.header__search-form input:focus {
+    background-color: transparent !important;
+}
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0.2rem;
+}
+.weather__card--main {
+    background-color: var(--cards-light);
+    border-radius: 1.2rem;
+    min-height: 200px;
+    padding: 1rem 1.5rem;
+}
+
+.weather__temperature {
+    font-size: 4.5rem;
+    font-weight: 500;
+}
+
+/* -------------------------------- */
+.day-properties {
+    background-color: var(--cards-light);
+    border-radius: 1rem;
+    display: flex;
+    padding: 0.7rem 0.7rem;
+}
+.btn-toggle {
+    font-size: 1.7rem;
+}
+/* ------------------------------- */
+.weather__hourly-card {
+    background-color: var(--cards-light);
+    padding: 0.7rem 0.7rem;
+}
+.weather__hourly-left {
+    border-right: 1px solid #ccc;
+}
+
+.weather__hourly-temp {
+    font-size: 2rem;
+}
+.weather__hourly-extra-item span {
+    font-size: 0.7rem;
+}
+.weather__hourly-icon {
+    font-size: 2rem;
+}
+.weather__hourly-time {
+    font-size: 0.8rem;
+}
+
+.weather-hourly-container {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+@media (max-width: 768px) {
+    .header__wrapper {
+        padding: 1rem;
+    }
+}
+@media (max-width: 1175px) {
+    html {
+        font-size: 13px;
+    }
+}
+@media (max-width: 945px) {
+    html {
+        font-size: 10px;
+    }
+}

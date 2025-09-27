@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather App</title>
+        <meta
+            name="description"
+            content="Weather App - Get real-time weather updates, forecasts, and temperature in Celsius or Fahrenheit for your current location or any city worldwide." />
+        <link rel="icon" href="imgs/Light.png" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <!-- Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <!-- Bootstrap -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+            integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <!-- My CSS -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header__wrapper container custom-container bg-custom">
+                <div class="row justify-content-around align-items-center py-sm-2">
+                    <div class="col-5 col-md-3">
+                        <div class="header__greeting">
+                            <span id="greeting" class="header__greeting-text h4">Good Morning</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-5">
+                        <form
+                            action=""
+                            class="header__search-form d-flex w-100"
+                            role="search"
+                            aria-label="Search weather location">
+                            <label for="city-search" class="visually-hidden">Search City</label>
+                            <input
+                                list="cities"
+                                id="city-search"
+                                type="text"
+                                class="header__search-input form-control me-1"
+                                placeholder="Search City" />
+                            <datalist id="cities"></datalist>
+                            <button
+                                type="submit"
+                                class="header__search-btn btn btn-outline-primary btn-sm">
+                                Search
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-1 d-none d-md-block">
+                        <div class="btn-group dropend">
+                            <button
+                                type="button"
+                                class="btn-sm btn dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-label="Change temperature unit"
+                                aria-expanded="false">
+                                Change Unit
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="unitDropdown" role="menu">
+                                <li role="menuitem">
+                                    <button id="fahrenheitBtn" class="dropdown-item">
+                                        Fahrenheit
+                                    </button>
+                                </li>
+                                <li role="menuitem">
+                                    <button id="celsiusBtn" class="dropdown-item">Celsius</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-none d-md-block">
+                        <div
+                            class="header__theme d-flex align-items-center justify-content-between">
+                            <button
+                                id="toggleTheme"
+                                class="header__theme-btn btn-toggle"
+                                aria-label="Toggle dark mode">
+                                <i class="bi bi-brightness-low"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-1 d-md-none">
+                        <div class="dropdown">
+                            <button
+                                class="btn btn-sm"
+                                type="button"
+                                id="settingsDropdown"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-gear-fill"></i>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="settingsDropdown">
+                                <li>
+                                    <button
+                                        id="toggleThemeMobile"
+                                        class="dropdown-item"
+                                        aria-label="Toggle dark mode">
+                                        <i class="bi bi-brightness-low me-1"></i> Toggle Theme
+                                    </button>
+                                </li>
+                                <li>
+                                    <h6 class="dropdown-header">Units</h6>
+                                </li>
+                                <li>
+                                    <button id="fahrenheitBtnMobile" class="dropdown-item">
+                                        Fahrenheit
+                                    </button>
+                                </li>
+                                <li>
+                                    <button id="celsiusBtnMobile" class="dropdown-item">
+                                        Celsius
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container custom-container">
+                <section
+                    class="weather weather--current row gy-4"
+                    aria-labelledby="current-weather-title">
+                    <div class="col-md-7 col-lg-8">
+                        <div class="weather__details row gy-4">
+                            <div class="col-md-12">
+                                <article
+                                    class="weather__card weather__card--main d-flex flex-column justify-content-between">
+                                    <div
+                                        class="weather__top d-flex justify-content-between align-items-center">
+                                        <div
+                                            class="weather__unit d-flex align-items-center justify-content-between">
+                                            <span class="me-2">Current Weather :</span>
+                                            <div class="">
+                                                <div class="header__location">
+                                                    <i
+                                                        class="fa-solid fa-location-dot me-2"
+                                                        aria-hidden="true"></i>
+                                                    <span
+                                                        id="user-location"
+                                                        class="header__location-text"
+                                                        >Loading..</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <time id="time" class="weather__time">00:00 PM</time>
+                                    </div>
+
+                                    <div
+                                        class="current-weather-wrapper d-flex align-items-center my-4">
+                                        <div class="weather__icon">
+                                            <i id="weatherIcon" class="bi"></i>
+                                        </div>
+
+                                        <p id="current-weather" class="weather__temperature ms-4">
+                                            Loading..
+                                        </p>
+                                    </div>
+
+                                    <div class="weather__summary">
+                                        <span>Rainy</span> |
+                                        <span>Feels like °C</span>
+                                    </div>
+
+                                    <p class="weather__note text-secondary">
+                                        The highest will be °C
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i class="bi bi-fan text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="text-secondary"> Air Quality</span>
+                                        <span id="airQuality" class="h5 m-0">Loading..</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i class="fa-solid fa-wind text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="text-secondary">Wind</span>
+                                        <span id="wind" class="h5 m-0">Loading..</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i class="bi bi-droplet-half text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="text-secondary"> Humidity</span>
+                                        <span id="humidity" class="h5 m-0">Loading..</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i
+                                            class="bi bi-cloud-lightning-rain-fill text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="text-secondary"> Chance Of Rain</span>
+                                        <span id="rain-chance" class="h5 m-0">Loading..</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i class="bi bi-speedometer2 text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="text-secondary">Pressure</span>
+                                        <span id="pressure" class="h5 m-0">Loading..</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="day-properties">
+                                    <div>
+                                        <i
+                                            class="bi bi-brightness-alt-high-fill text-secondary"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <span class="sun-title text-secondary"></span>
+                                        <span id="sunrise" class="h5 m-0">00:00 am</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <div class="weather-hourly-container">
+                            <div class="weather__hourly-card row justify-content-between"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!--  SCRIPTS  -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+            integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+            crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
